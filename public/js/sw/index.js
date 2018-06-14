@@ -1,4 +1,5 @@
 var staticCacheName = 'wittr-static-v2';
+//hello
 
 self.addEventListener('install', function(event) {
   event.waitUntil(
