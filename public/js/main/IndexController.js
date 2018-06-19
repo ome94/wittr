@@ -26,6 +26,7 @@ IndexController.prototype._registerServiceWorker = function() {
     // indexController._updateReady()
     if (reg.waiting){
       indexController._updateReady();
+      return;
     }
 
     // TODO: if there's an updated worker installing, track its
@@ -37,6 +38,7 @@ IndexController.prototype._registerServiceWorker = function() {
           indexController._updateReady();
         }
       });
+      return;
     }
 
     // TODO: otherwise, listen for new installing workers arriving.
