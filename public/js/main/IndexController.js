@@ -169,6 +169,14 @@ IndexController.prototype._onSocketMessage = function(data) {
     // Hint: you can use .openCursor(null, 'prev') to
     // open a cursor that goes through an index/store
     // backwards.
+    return store.index('by-date').openCursor(null, 'prev')
+                .then(cursor => cursor.advance(30));
+  }).then(function cleanDB(cursor) {
+    if(!cursor) return;
+
+    cursor.delete();
+     
+    return cursor.continue().then(cleanDB);
   });
 
   this._postsView.addPosts(messages);
